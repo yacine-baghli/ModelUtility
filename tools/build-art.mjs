@@ -277,15 +277,15 @@ writeFileSync(page, html);
    chrome --headless --hide-scrollbars --window-size=1200,630 --screenshot=media/og.png tools/og-card.html */
 writeFileSync(join(ROOT, 'tools', 'og-card.html'), `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>Model Utility: share card</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400..600;1,400..600&family=Martian+Mono:wdth,wght@75..112.5,300..500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Martian+Mono:wdth,wght@75..112.5,300..500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 <style>
 html, body { width: 1200px; height: 630px; overflow: hidden; }
 .card { position: relative; width: 1200px; height: 630px; padding: 62px 0 0 72px; }
 .card .mark { gap: 14px; }
 .card .logo { height: 44px; }
-.card .mark span { font-size: 36px; }
-.card h1 { font-size: 55px; line-height: 1.03; max-width: 9.4em; margin-top: 84px; }
+.card .mark span { font-size: 33px; }
+.card h1 { font-size: 50px; line-height: 1.08; max-width: 9.8em; margin-top: 84px; }
 .card .eyebrow { position: absolute; left: 72px; bottom: 58px; margin: 0; font-size: 12px; }
 .card .fig { position: absolute; right: 30px; top: 92px; width: 610px; }
 .card .fig text { font-size: 11.5px; }
