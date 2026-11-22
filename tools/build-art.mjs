@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-/* Askeo Labs: draws the logo and the three hero figures, then writes them into index.html
-   (between the <!-- name:start --> / <!-- name:end --> markers) and into media/.
+/* Model Utility: draws the three hero figures and writes them into index.html (between the
+   <!-- name:start --> / <!-- name:end --> markers), then writes the share card's page.
    Run from anywhere:  node tools/build-art.mjs
    The bench is the project's own stand-in scene (centrifuge, tube rack, bottle, beaker); the
-   masses, the friction and the hinge range in Fig. 1b are the ones that scene carries. */
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+   masses, the friction and the hinge range in Fig. 1b are the ones that scene carries.
+   The logo is not drawn here: tools/make-logo.py makes its files from the source drawing. */
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -261,48 +262,8 @@ function figRobot() {
   return svg('The same bench, with a robot arm on it. The arm lifts a tube out of the rack and carries it toward the open centrifuge. A spark marked agent is linked to the arm.', s);
 }
 
-/* ───────────── logo ───────────── */
-const SPARK_A = [9.8, 16.7, 3.5];
-function logoBody(id, ink, spark) {
-  const big = `fill="none" stroke="${ink}" stroke-width="1.9" stroke-linejoin="miter" stroke-miterlimit="8"`;
-  return `<defs><clipPath id="${id}-c"><rect x="-1" y="2" width="128" height="20"/></clipPath></defs>`
-    + `<g clip-path="url(#${id}-c)" ${big}>`
-    + `<path d="M1.3 24L9.8 -1 18.3 24"/>`                                                    // A, without its bar
-    + `<path d="M30.71 4.88A4.525 4.525 0 1 0 27 12A4.525 4.525 0 1 1 23.29 19.12"/>`          // S
-    + `<path d="M37.7 24V-1M49.4 -0.5L38.75 12 49.4 24.5"/>`                                   // K
-    + `<path d="M62.6 2.95H53.1V21.05H62.6M53.1 12H61.2"/>`                                    // E
-    + `<circle cx="76.5" cy="12" r="9.05"/>`                                                   // O
-    + `</g>`
-    + `<path ${spark} d="${star(...SPARK_A)}"/>`                                               // the spark is the bar of the A
-    + `<g transform="translate(23.2 0)" fill="none" stroke="${ink}" stroke-width="1.05" stroke-linejoin="round" stroke-linecap="butt">`
-    + `<path d="M70.5 15V21.475H74.7"/><path d="M78.1 22L81 15.4 83.9 22"/>`
-    + `<path d="M87.7 21.48V15.53H89.8a1.37 1.37 0 0 1 0 2.74H87.7M89.8 18.26H90.2a1.61 1.61 0 0 1 0 3.21H87.7"/>`
-    + `<path d="M100.2 16.73C99.6 15.83 98.9 15.53 98.1 15.53C96.9 15.53 96.15 16.23 96.15 17.08C96.15 19.25 100.3 17.75 100.3 19.93C100.3 20.78 99.5 21.48 98.2 21.48C97.2 21.48 96.4 21.08 95.9 20.18"/>`
-    + `</g>`;
-}
-const LOGO_BOX = '-1 0 126 24';
-function markBody(id, ink, spark) {
-  return `<defs><clipPath id="${id}-c"><rect x="0" y="6" width="32" height="19.5"/></clipPath></defs>`
-    + `<path clip-path="url(#${id}-c)" fill="none" stroke="${ink}" stroke-width="2.7" stroke-miterlimit="8" d="M6.6 28L16 3 25.4 28"/>`
-    + `<path fill="${spark}" d="${star(16, 20.4, 4)}"/>`;
-}
-const file = (box, w, h, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${box}" width="${w}" height="${h}" role="img" aria-label="Askeo Labs"><title>Askeo Labs</title>${body}</svg>\n`;
-
 /* ───────────── write ───────────── */
-mkdirSync(join(ROOT, 'media'), { recursive: true });
-const media = {
-  'askeo-logo.svg': file(LOGO_BOX, 1260, 240, logoBody('k', INK, `fill="${RED}"`)),
-  'askeo-logo-on-dark.svg': file(LOGO_BOX, 1260, 240, logoBody('k', PAPER, 'fill="#e0694c"')),
-  'askeo-mark.svg': file('0 0 32 32', 512, 512, markBody('k', INK, RED)),
-  'askeo-mark-on-dark.svg': file('0 0 32 32', 512, 512, markBody('k', PAPER, '#e0694c')),
-  'askeo-icon.svg': file('0 0 32 32', 512, 512, `<rect width="32" height="32" rx="7" fill="${INK}"/>` + markBody('k', PAPER, '#e0694c')),
-};
-for (const [name, text] of Object.entries(media)) writeFileSync(join(ROOT, 'media', name), text);
-
-const parts = {
-  logo: `<symbol id="logo" viewBox="${LOGO_BOX}">${logoBody('logo', 'currentColor', 'style="fill:var(--spark,#b8452c)"')}</symbol>`,
-  'fig-a': figPhotos(), 'fig-b': figPhysics(), 'fig-c': figRobot(),
-};
+const parts = { 'fig-a': figPhotos(), 'fig-b': figPhysics(), 'fig-c': figRobot() };
 const page = join(ROOT, 'index.html');
 let html = readFileSync(page, 'utf8');
 for (const [name, text] of Object.entries(parts)) {
@@ -315,23 +276,25 @@ writeFileSync(page, html);
 /* the card shown when the link is shared, 1200 x 630. To refresh media/og.png after a change:
    chrome --headless --hide-scrollbars --window-size=1200,630 --screenshot=media/og.png tools/og-card.html */
 writeFileSync(join(ROOT, 'tools', 'og-card.html'), `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Askeo Labs: share card</title>
+<html lang="en"><head><meta charset="utf-8"><title>Model Utility: share card</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400..600;1,400..600&family=Martian+Mono:wdth,wght@75..112.5,300..500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 <style>
 html, body { width: 1200px; height: 630px; overflow: hidden; }
 .card { position: relative; width: 1200px; height: 630px; padding: 62px 0 0 72px; }
-.card .logo { height: 30px; }
+.card .mark { gap: 14px; }
+.card .logo { height: 44px; }
+.card .mark span { font-size: 36px; }
 .card h1 { font-size: 55px; line-height: 1.03; max-width: 9.4em; margin-top: 84px; }
 .card .eyebrow { position: absolute; left: 72px; bottom: 58px; margin: 0; font-size: 12px; }
 .card .fig { position: absolute; right: 30px; top: 92px; width: 610px; }
 .card .fig text { font-size: 11.5px; }
 </style></head>
 <body><div class="card">
-<svg class="logo" viewBox="${LOGO_BOX}">${logoBody('logo', 'currentColor', `fill="${RED}"`)}</svg>
+<div class="mark"><img class="logo" src="../media/mu-logo.png" alt=""><span>Model Utility</span></div>
 <h1>The environment where agents run physical experiments and train robots, <em>on their own.</em></h1>
 <p class="eyebrow">From photographs to a 3D environment with physics</p>
 ${parts['fig-c']}
 </div></body></html>
 `);
-console.log('wrote', Object.keys(parts).join(', '), 'into index.html and', Object.keys(media).length, 'files into media/');
+console.log('wrote', Object.keys(parts).join(', '), 'into index.html, and tools/og-card.html');

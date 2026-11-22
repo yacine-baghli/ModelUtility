@@ -1,11 +1,11 @@
-/* Askeo Labs: section outline and quiet entrances. No dependencies. */
+/* Model Utility: section outline and quiet entrances. No dependencies. */
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   if (!('IntersectionObserver' in window)) return;
 
   /* highlight the section being read */
-  const links = $$('.outline a');
+  const links = $$('.outline a[href^="#"]');
   const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
   const spy = new IntersectionObserver(entries => {
     for (const e of entries) {
@@ -15,11 +15,11 @@
       if (a) a.classList.add('on');
     }
   }, { rootMargin: '-45% 0px -50% 0px' });
-  $$('main > section, .close').forEach(s => spy.observe(s));
+  $$('main section[id], .close').forEach(s => spy.observe(s));
 
   /* let things arrive as they are reached */
   if (reduce) return;
-  const items = $$('.hero-copy > *, .panel, .sec h2, .cols, .pull, .trio li, .aside, .use, .plate--study, .close-grid > *');
+  const items = $$('.hero-copy > *, .panel, .trust, .sec h2, .cols, .pull, .trio li, .aside, .use, .plate--study, .close-grid > *');
   const show = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); show.unobserve(e.target); }
   }, { rootMargin: '0px 0px -6% 0px' });
