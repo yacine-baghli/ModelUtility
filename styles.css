@@ -94,6 +94,8 @@ h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; 
 .fig { width: 100%; height: auto; overflow: visible; }
 .fig text { font-family: var(--mono); font-stretch: 86%; font-size: 11.5px; letter-spacing: .05em; fill: var(--red); }
 .panel figcaption { border-top: 1px solid var(--line-2); padding-top: 14px; margin-top: 12px; }
+.tri-note { margin: 18px 0 0; font-size: 12.5px; color: var(--ink-3); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .panel + .panel::before {
   content: "→"; position: absolute; left: calc(var(--tri-gap) / -2); top: 40%; transform: translate(-50%, -50%);
   font-family: var(--serif); font-size: 26px; line-height: 1; color: var(--red);
@@ -127,7 +129,22 @@ h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; 
 .cols p { max-width: 30em; }
 .pull { font-size: clamp(20px, 2.05vw, 28px); line-height: 1.28; letter-spacing: -.025em; max-width: 27em; margin-top: clamp(36px, 5vw, 68px); padding-left: clamp(18px, 2.2vw, 30px); border-left: 1px solid var(--red); }
 
-/* the three things the layer does */
+.intro { max-width: 40em; margin-top: clamp(24px, 3vw, 38px); color: var(--ink-2); }
+
+/* agents and robots, side by side */
+.vs { width: 100%; border-collapse: collapse; margin-top: clamp(34px, 4.6vw, 64px); }
+.vs th, .vs td { text-align: left; padding: 14px 18px 14px 0; border-top: 1px solid var(--line); vertical-align: baseline; }
+.vs thead th, .vs thead td { border-top: 0; padding-bottom: 11px; }
+.vs thead th, .vs tbody th { font-family: var(--mono); font-stretch: 86%; font-size: 10.5px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.vs thead th:last-child { color: var(--red); }
+.vs tbody th { width: 24%; }
+.vs tbody tr:first-child > * { border-top-color: var(--line-2); }
+.vs tbody tr:last-child > * { border-bottom: 1px solid var(--line-2); }
+.vs td { width: 38%; font-size: 17.5px; font-weight: 500; letter-spacing: -.012em; color: var(--ink-3); }
+.vs td:last-child { color: var(--ink); }
+.vs tbody tr:last-child td:last-child { color: var(--red); }
+
+/* three costly ways, or three steps */
 .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); margin-top: clamp(36px, 5vw, 68px); }
 .trio li { border-top: 1px solid var(--line); padding-top: 18px; }
 .num { font-family: var(--serif); font-size: 17px; letter-spacing: 0; text-transform: none; color: var(--red); }
@@ -136,7 +153,30 @@ h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; 
 .trio p { font-size: 15.5px; line-height: 1.55; color: var(--ink-2); max-width: 24em; }
 .aside { font-family: var(--serif); font-size: clamp(18px, 1.65vw, 22px); line-height: 1.35; letter-spacing: -.02em; color: var(--ink-3); margin-top: clamp(32px, 4.4vw, 60px); max-width: 28em; }
 
-/* what it is for: two uses, and an agent's log */
+/* from video to environment: five steps, two of them inside the harness */
+.pipe-wrap { --pg: clamp(14px, 2vw, 28px); position: relative; margin-top: clamp(40px, 5.4vw, 76px); padding-top: 38px; }
+.pipe { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--pg); }
+.pipe li { position: relative; border-top: 1px solid var(--line-2); padding-top: 16px; }
+.pipe li.in-loop { border-top: 2px solid var(--red); padding-top: 15px; }
+.pipe li:not(:last-child)::after {
+  content: "→"; position: absolute; top: -.5em; right: calc(var(--pg) / -2); transform: translateX(50%);
+  font-family: var(--serif); font-size: 17px; line-height: 1; color: var(--red); background: var(--paper); padding: 0 3px;
+}
+.pipe h3 { font-size: 19px; font-weight: 600; letter-spacing: -.015em; line-height: 1.25; margin: 12px 0 6px; }
+.pipe p { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+.pipe-loop, .pipe-back { position: absolute; margin: 0; font-family: var(--mono); font-stretch: 86%; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.pipe-loop {
+  top: 12px; height: 26px; left: calc((100% + var(--pg)) * 2 / 5); width: calc((100% + var(--pg)) * 2 / 5 - var(--pg));
+  border: 1px solid var(--red); border-bottom: 0; border-radius: 5px 5px 0 0; text-align: center; color: var(--red);
+}
+.pipe-loop span { position: relative; top: -.95em; background: var(--paper); padding: 0 9px; }
+.pipe-back { top: 4px; right: 0; color: var(--ink-3); }
+.pipe-wrap + .split { margin-top: clamp(40px, 5.4vw, 76px); }
+.use .tag { margin: 0 0 10px; font-family: var(--mono); font-stretch: 86%; font-size: 10.5px; line-height: 1.6; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.use .tag--on { color: var(--red); }
+.duo h3 { color: var(--ink); }
+
+/* two uses, and an environment's log */
 .split { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
 .split-copy h2 { margin-bottom: clamp(26px, 3.4vw, 44px); }
 .use { border-top: 1px solid var(--line); padding: 18px 0 24px; }
@@ -294,6 +334,13 @@ h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; 
   .sec-body { border-top: 0; padding-top: 6px; }
   .backers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .trio { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .pipe-wrap { padding-top: 0; }
+  .pipe-loop, .pipe-back, .pipe li:not(:last-child)::after { display: none; }
+  .pipe { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .pipe li { padding-bottom: 20px; }
+  .pipe li.in-loop h3::after { content: "harness"; margin-left: 12px; font-family: var(--mono); font-stretch: 86%; font-size: 10.5px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+  .pipe p { font-size: 15.5px; max-width: 30em; }
+  .duo { gap: 0; }
   .trio li { padding-bottom: 22px; }
   .tri { --tri-gap: 56px; grid-template-columns: minmax(0, 1fr); margin-top: 36px; }
   .panel { width: 100%; max-width: 520px; margin-inline: auto; }
@@ -306,6 +353,9 @@ h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; 
   .foot { grid-template-columns: 1fr 1fr; row-gap: 14px; }
   .foot-r { grid-column: 2; }
   .mark span { font-size: 19px; }
+  .vs th, .vs td { padding: 12px 10px 12px 0; }
+  .vs td { font-size: 15.5px; }
+  .vs tbody th { width: 26%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

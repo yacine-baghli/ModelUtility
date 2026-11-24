@@ -19,14 +19,14 @@
 
   /* let things arrive as they are reached */
   if (reduce) return;
-  const items = $$('.hero-copy > *, .panel, .trust, .sec h2, .cols, .pull, .trio li, .aside, .use, .plate--study, .close-grid > *');
+  const items = $$('.hero-copy > *, .panel, .trust, .sec h2, .cols, .intro, .vs, .pull, .trio li, .pipe li, .aside, .use, .plate--study, .close-grid > *');
   const show = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); show.unobserve(e.target); }
   }, { rootMargin: '0px 0px -6% 0px' });
   items.forEach(el => {
     el.classList.add('rv');
     const sib = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0;
-    if (el.matches('.trio li, .panel, .hero-copy > *')) el.style.transitionDelay = (sib * 90) + 'ms';
+    if (el.matches('.trio li, .pipe li, .panel, .hero-copy > *')) el.style.transitionDelay = (sib * 90) + 'ms';
     show.observe(el);
   });
 })();
