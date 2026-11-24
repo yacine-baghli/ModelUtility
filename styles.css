@@ -86,7 +86,20 @@ h1 em, h2 em { font-style: normal; color: var(--ink-3); }
 h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; }
 .lede { font-size: 17px; line-height: 1.55; color: var(--ink-2); }
 
-/* the figures: one bench, three times */
+/* the film */
+.film { margin-top: clamp(30px, 4.2vw, 60px); scroll-margin-top: 90px; }
+.film-frame { position: relative; aspect-ratio: 16 / 9; background: var(--paper-2); border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; }
+.film video { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--paper); }
+.film-play {
+  position: absolute; inset: 0; margin: auto; width: clamp(60px, 6.6vw, 92px); aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%;
+  background: var(--ink); color: var(--paper); cursor: pointer; display: grid; place-items: center; transition: transform .25s var(--ease), background .2s;
+}
+.film-play[hidden] { display: none; }
+.film-play:hover { transform: scale(1.05); background: #3a342c; }
+.film-play svg { width: 36%; height: 36%; margin-left: 5%; fill: currentColor; }
+.film figcaption { margin-top: 14px; }
+
+/* the figures: one packing line, three times */
 .plate { position: relative; }
 .plate figcaption { font-family: var(--serif); font-size: 15px; line-height: 1.45; color: var(--ink-3); }
 .plate figcaption span { color: var(--ink); margin-right: 12px; white-space: nowrap; }
@@ -124,6 +137,8 @@ h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; 
 .sec-label { color: var(--ink-3); margin: 0; padding-top: 14px; border-top: 1px solid var(--line-2); align-self: start; display: flex; gap: 1.4em; }
 .sec-label b { font-family: var(--serif); font-size: 15px; font-weight: 400; letter-spacing: .04em; color: var(--red); line-height: 1; min-width: 1.4em; }
 .sec-body { min-width: 0; padding-top: 14px; border-top: 1px solid var(--line-2); }
+.sec-wide { grid-column: 1 / -1; }
+.sec-body--more { grid-column: 2; padding-top: 0; border-top: 0; }
 .sec h2 { font-size: clamp(27px, 2.95vw, 41px); line-height: 1.1; max-width: 17.5em; padding-top: clamp(10px, 1.6vw, 22px); }
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); margin-top: clamp(32px, 4.4vw, 60px); color: var(--ink-2); }
 .cols p { max-width: 30em; }
@@ -332,6 +347,7 @@ h1 { font-size: clamp(34px, 4.1vw, 57px); line-height: 1.08; max-width: 13.6em; 
   .hero-copy, .cols, .split, .close-grid { grid-template-columns: minmax(0, 1fr); }
   .sec { grid-template-columns: minmax(0, 1fr); }
   .sec-body { border-top: 0; padding-top: 6px; }
+  .sec-body--more { grid-column: auto; padding-top: 0; }
   .backers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .trio { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .pipe-wrap { padding-top: 0; }

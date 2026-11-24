@@ -2,6 +2,15 @@
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* the film: a play button over the poster, until it starts */
+  const film = document.querySelector('.film video'), play = document.querySelector('.film-play');
+  if (film && play) {
+    film.controls = false;
+    play.hidden = false;
+    play.addEventListener('click', () => film.play());
+    film.addEventListener('play', () => { play.hidden = true; film.controls = true; });
+  }
   if (!('IntersectionObserver' in window)) return;
 
   /* highlight the section being read */
@@ -19,7 +28,7 @@
 
   /* let things arrive as they are reached */
   if (reduce) return;
-  const items = $$('.hero-copy > *, .panel, .trust, .sec h2, .cols, .intro, .vs, .pull, .trio li, .pipe li, .aside, .use, .plate--study, .close-grid > *');
+  const items = $$('.hero-copy > *, .film, .panel, .trust, .sec h2, .cols, .intro, .vs, .pull, .trio li, .pipe li, .aside, .use, .plate--study, .close-grid > *');
   const show = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); show.unobserve(e.target); }
   }, { rootMargin: '0px 0px -6% 0px' });

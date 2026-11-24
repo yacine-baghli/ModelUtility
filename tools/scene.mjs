@@ -146,10 +146,9 @@ export function shadows() {
 }
 
 /* the floor: a faint grid */
-export function grid() {
+export function grid(lo = -1.2, hi = 3) {
   let d = '';
-  for (let y = -1.2; y <= 2.41; y += 0.15) d += open([P(-1.2, y), P(3, y)]);
-  for (let x = -1.2; x <= 3.01; x += 0.15) d += open([P(x, -1.2), P(x, 2.4)]);
+  for (let v = lo; v <= hi + 1e-6; v += 0.15) d += open([P(lo, v), P(hi, v)]) + open([P(v, lo), P(v, hi)]);
   return `<path d="${d}" fill="none" stroke="${INK}" stroke-width=".5" opacity=".2"/>`;
 }
 
