@@ -4,7 +4,7 @@
    The scene is our own stand-in: a conveyor carrying snack packs, and a stack of crates beside it.
    Every number written on the drawings (masses, friction, belt speed) is illustrative. */
 
-export const INK = '#1d1a16', PAPER = '#f3efe7', RED = '#b8452c', PRINT = '#fdfcf9';
+export const INK = '#161816', PAPER = '#f3efe7', RED = '#e5480e', PRINT = '#fbf8f2';     // the pitch deck's ink, paper and orange
 export const W = 420, H = 330;
 
 /* ───────────── projection: isometric, x runs right-down, y left-down, z up ───────────── */

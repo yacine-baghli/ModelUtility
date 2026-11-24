@@ -85,23 +85,23 @@ writeFileSync(page, html);
    chrome --headless --hide-scrollbars --window-size=1200,630 --screenshot=media/og.png tools/og-card.html */
 writeFileSync(join(ROOT, 'tools', 'og-card.html'), `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>Model Utility: share card</title>
-<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Martian+Mono:wdth,wght@75..112.5,300..500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400..700&family=Inter+Tight:wght@500..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 <style>
 html, body { width: 1200px; height: 630px; overflow: hidden; }
-.card { position: relative; width: 1200px; height: 630px; padding: 62px 0 0 72px; }
+.card { position: relative; width: 1200px; height: 630px; padding: 60px 0 0 72px; }
 .card .mark { gap: 14px; }
 .card .logo { height: 44px; }
-.card .mark span { font-size: 33px; }
-.card h1 { font-size: 49px; line-height: 1.1; max-width: none; white-space: nowrap; margin-top: 104px; }
-.card .eyebrow { position: absolute; left: 72px; bottom: 58px; margin: 0; font-size: 12px; }
-.card .fig { position: absolute; right: 56px; top: 118px; width: 540px; overflow: hidden; }
+.card .mark span { font-size: 44px; }
+.card h1 { font-size: 62px; line-height: 1; max-width: none; white-space: nowrap; margin-top: 84px; }
+.card p { position: absolute; left: 72px; bottom: 60px; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.card .fig { position: absolute; right: 60px; top: 150px; width: 470px; overflow: hidden; }
 .card .fig text { font-size: 11.5px; }
 </style></head>
 <body><div class="card">
 <div class="mark"><img class="logo" src="../media/mu-logo.png" alt=""><span>Model Utility</span></div>
-<h1>Turning real-world<br>videos into <em>robot<br>training environments.</em></h1>
-<p class="eyebrow">Reinforcement learning environments for robotics</p>
+<h1>Turning real-world<br>videos into <em>robot<br>training<br>environments.</em></h1>
+<p>Entrepreneurs First · San Francisco</p>
 ${parts['fig-c']}
 </div></body></html>
 `);
