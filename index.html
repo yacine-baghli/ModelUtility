@@ -27,7 +27,7 @@
 
 <header class="bar">
   <a class="mark" href="#top" aria-label="Model Utility, home">
-    <img class="logo" src="media/mu-logo.png" alt="" width="45" height="28"><span>Model Utility</span>
+    <img class="logo" src="media/mu-logo.png" alt="" width="45" height="28">
   </a>
   <nav class="outline" aria-label="Sections">
     <a href="#vision">Vision</a>
@@ -36,7 +36,7 @@
     <a href="#who">Who it is for</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a class="btn btn--small" href="#contact">Get in touch</a>
+  <a class="btn btn--small" href="#contact">Request a pilot</a>
 </header>
 
 <main id="main">
@@ -44,12 +44,13 @@
 <!-- ───────────────────────── hero ───────────────────────── -->
 <section class="hero" id="top">
   <div class="wrap">
+    <p class="brand"><img src="media/mu-logo.png" alt="" width="45" height="28"><span>Model Utility</span></p>
     <h1>Turning <span class="nb">real-world</span> videos into <em>robot training environments.</em></h1>
     <p class="lede">Robots will learn like agents did, <b>by acting and being rewarded</b>, not from demos. Model Utility turns real-world video into the <b>RL environments</b> that make that possible at scale.</p>
     <p class="cta">
-      <a class="btn" href="#contact">Talk to us</a>
+      <a class="btn" href="#contact">Request a pilot</a>
       <a class="link" href="#film">Watch the film <span aria-hidden="true">↓</span></a>
-      <span class="byline">Entrepreneurs First · San Francisco</span>
+      <span class="byline"><span class="ef">Entrepreneurs First</span> · San Francisco</span>
     </p>
 
     <figure class="film" id="film">
@@ -82,7 +83,7 @@
 </section>
 
 <!-- ───────────────────────── vision ───────────────────────── -->
-<section class="band" id="vision" aria-labelledby="vision-h">
+<section class="band band--c" id="vision" aria-labelledby="vision-h">
   <div class="wrap">
     <p class="kicker">Vision</p>
     <h2 id="vision-h">Agents learned by doing. <em>Robots are next.</em></h2>
@@ -98,13 +99,13 @@
         <tr><th scope="row">Key infrastructure</th><td>VM sandboxes</td><td>RL environments</td></tr>
       </tbody>
     </table>
-    <p class="take">Human demos don’t scale. RL environments (interaction + reward) do.</p>
+    <p class="take">Human demos don’t scale. RL environments <span class="nb">(interaction + reward)</span> do.</p>
     <p class="note">Every robot demo needs a person, a robot and hours of teleoperation, so data grows with headcount. Interaction plus reward grows with compute: once the environment exists, a model can run millions of attempts and learn from each one.</p>
   </div>
 </section>
 
 <!-- ───────────────────────── the problem ───────────────────────── -->
-<section class="band band--alt" id="problem" aria-labelledby="problem-h">
+<section class="band band--alt band--c" id="problem" aria-labelledby="problem-h">
   <div class="wrap">
     <p class="kicker">The problem</p>
     <h2 id="problem-h">Robot models are general. <em>Every deployment is specific.</em></h2>
@@ -119,7 +120,7 @@
 </section>
 
 <!-- ───────────────────────── how it works ───────────────────────── -->
-<section class="band" id="how" aria-labelledby="how-h">
+<section class="band band--c" id="how" aria-labelledby="how-h">
   <div class="wrap">
     <p class="kicker">How it works</p>
     <h2 id="how-h">Video in. <em>Trainable environment out.</em></h2>
@@ -163,7 +164,7 @@
 </section>
 
 <!-- ───────────────────────── same task, two worlds ───────────────────────── -->
-<section class="band band--alt" id="worlds" aria-labelledby="worlds-h">
+<section class="band band--alt band--c" id="worlds" aria-labelledby="worlds-h">
   <div class="wrap">
     <p class="kicker">From real to simulated</p>
     <h2 id="worlds-h">Same task, <em>two worlds.</em></h2>
@@ -193,7 +194,7 @@
 </section>
 
 <!-- ───────────────────────── who it is for ───────────────────────── -->
-<section class="band" id="who" aria-labelledby="who-h">
+<section class="band band--c" id="who" aria-labelledby="who-h">
   <div class="wrap">
     <p class="kicker">Who it is for</p>
     <h2 id="who-h">We help robot intelligence <em>adapt to the real world.</em></h2>
@@ -211,7 +212,7 @@
         <p class="need">Need: diverse, physics-grounded environments at scale</p>
       </div>
     </div>
-    <p class="take">Initial focus: paid design partnerships with deployment startups.</p>
+    <p class="take">We are starting with design partnerships with robotics deployment startups.</p>
   </div>
 </section>
 
@@ -220,9 +221,26 @@
 <!-- ───────────────────────── contact ───────────────────────── -->
 <section class="close" id="contact" aria-labelledby="contact-h">
   <div class="wrap">
-    <p class="kicker">Contact</p>
+    <p class="kicker">Request a pilot</p>
     <h2 id="contact-h">The infrastructure layer that turns real-world workflows into <em>trainable environments for physical AI.</em></h2>
-    <p class="cta"><a class="btn btn--light" href="mailto:contact@modelutility.com?subject=Hello%20Model%20Utility">contact@modelutility.com</a></p>
+    <div class="pilot">
+      <div class="pilot-intro">
+        <p>Tell us about your robot, the task and the site, and we will scope a pilot with you.</p>
+        <p class="pilot-alt">Prefer to write? <a href="mailto:contact@modelutility.com?subject=Hello%20Model%20Utility">contact@modelutility.com</a></p>
+      </div>
+      <!-- No form service yet: without data-endpoint, main.js opens the visitor's email app with the request written out.
+           To receive requests directly, set data-endpoint to a form service URL that accepts a POST. -->
+      <form class="pilot-form" action="mailto:contact@modelutility.com" method="post" enctype="text/plain" data-endpoint="">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" autocomplete="organization" required></div>
+        <div class="field field--wide"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field field--wide"><label for="f-more">Tell us more <span>(optional)</span></label><textarea id="f-more" name="more" rows="4" placeholder="Your robot, the task, the objects, the site, your timeline"></textarea></div>
+        <div class="field--wide pilot-send">
+          <button class="btn btn--accent" type="submit">Request a pilot</button>
+          <p class="pilot-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
   </div>
   <div class="wrap"><footer class="foot">
     <a class="mark" href="#top" aria-label="Model Utility, back to top">

@@ -11,6 +11,35 @@
     play.addEventListener('click', () => film.play());
     film.addEventListener('play', () => { play.hidden = true; film.controls = true; });
   }
+
+  /* request a pilot: posted to a form service when the form names one,
+     otherwise handed to the visitor's email app with the request written out */
+  const form = document.querySelector('.pilot-form');
+  if (form) {
+    const status = form.querySelector('.pilot-status');
+    const to = 'contact@modelutility.com';
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(form));
+      const endpoint = form.dataset.endpoint;
+      if (endpoint) {
+        status.textContent = 'Sending…';
+        try {
+          const r = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+          if (!r.ok) throw new Error(String(r.status));
+          form.reset();
+          status.textContent = 'Thank you. We will be in touch soon.';
+        } catch (err) {
+          status.textContent = `That did not go through. Please write to ${to}.`;
+        }
+        return;
+      }
+      const subject = `Pilot request: ${d.company}`;
+      const body = [`Name: ${d.name}`, `Company: ${d.company}`, `Work email: ${d.email}`, '', d.more || ''].join('\n');
+      location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      status.textContent = `Your email app should now open with the request written out: press send there. If nothing opened, write to ${to}.`;
+    });
+  }
   if (!('IntersectionObserver' in window)) return;
 
   /* highlight the section being read */
@@ -28,7 +57,7 @@
 
   /* let things arrive as they are reached */
   if (reduce) return;
-  const items = $$('.hero h1, .lede, .hero .cta, .film, .trust h2, .backers, .kicker, .band h2, .sub, .vs, .take, .note, .trio li, .pipe li, .panel, .tag-note, .who, .close h2, .close .cta');
+  const items = $$('.brand, .hero h1, .lede, .hero .cta, .film, .trust h2, .backers, .kicker, .band h2, .sub, .vs, .take, .note, .trio li, .pipe li, .panel, .tag-note, .who, .close h2, .pilot');
   const show = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); show.unobserve(e.target); }
   }, { rootMargin: '0px 0px -6% 0px' });
