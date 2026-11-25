@@ -57,7 +57,7 @@
 
   /* let things arrive as they are reached */
   if (reduce) return;
-  const items = $$('.brand, .hero h1, .lede, .hero .cta, .film, .trust h2, .backers, .kicker, .band h2, .sub, .vs, .take, .note, .trio li, .pipe li, .panel, .tag-note, .who, .close h2, .pilot');
+  const items = $$('.brand, .hero h1, .lede, .hero .cta, .film, .trust h2, .backers, .band h2, .sub, .vs, .take, .note, .trio li, .pipe li, .panel, .tag-note, .who, .close h2, .pilot');
   const show = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); show.unobserve(e.target); }
   }, { rootMargin: '0px 0px -6% 0px' });

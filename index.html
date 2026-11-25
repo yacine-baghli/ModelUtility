@@ -18,7 +18,7 @@
 <link rel="icon" href="media/mu-icon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400..700&family=Inter+Tight:wght@500..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Instrument+Sans:wght@400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -46,7 +46,7 @@
   <div class="wrap">
     <p class="brand"><img src="media/mu-logo.png" alt="" width="45" height="28"><span>Model Utility</span></p>
     <h1>Turning <span class="nb">real-world</span> videos into <em>robot training environments.</em></h1>
-    <p class="lede">Robots will learn like agents did, <b>by acting and being rewarded</b>, not from demos. Model Utility turns real-world video into the <b>RL environments</b> that make that possible at scale.</p>
+    <p class="lede">Robots will learn like agents did, <em>by acting and being rewarded</em>, not from demos. Model Utility turns real-world video into the <em>RL environments</em> that make that possible at scale.</p>
     <p class="cta">
       <a class="btn" href="#contact">Request a pilot</a>
       <a class="link" href="#film">Watch the film <span aria-hidden="true">↓</span></a>
@@ -85,8 +85,7 @@
 <!-- ───────────────────────── vision ───────────────────────── -->
 <section class="band band--c" id="vision" aria-labelledby="vision-h">
   <div class="wrap">
-    <p class="kicker">Vision</p>
-    <h2 id="vision-h">Agents learned by doing. <em>Robots are next.</em></h2>
+    <h2 id="vision-h">Agents learned by doing. Robots are next.</h2>
     <table class="vs">
       <caption class="sr">How computer-use agents learned, and how robots will</caption>
       <thead>
@@ -99,7 +98,7 @@
         <tr><th scope="row">Key infrastructure</th><td>VM sandboxes</td><td>RL environments</td></tr>
       </tbody>
     </table>
-    <p class="take">Human demos don’t scale. RL environments <span class="nb">(interaction + reward)</span> do.</p>
+    <p class="take">Human demos don’t scale. <em>RL environments</em> <span class="nb">(interaction + reward)</span> do.</p>
     <p class="note">Every robot demo needs a person, a robot and hours of teleoperation, so data grows with headcount. Interaction plus reward grows with compute: once the environment exists, a model can run millions of attempts and learn from each one.</p>
   </div>
 </section>
@@ -107,55 +106,30 @@
 <!-- ───────────────────────── the problem ───────────────────────── -->
 <section class="band band--alt band--c" id="problem" aria-labelledby="problem-h">
   <div class="wrap">
-    <p class="kicker">The problem</p>
-    <h2 id="problem-h">Robot models are general. <em>Every deployment is specific.</em></h2>
+    <h2 id="problem-h">Robot models are general. Every deployment is specific.</h2>
     <p class="sub">Every real deployment needs adapting to a specific task, robot, set of objects and site. Today there are three ways to do that, and each one is expensive.</p>
     <ol class="trio">
       <li><span class="num">01</span><h3>Real-world data is slow and costly</h3></li>
       <li><span class="num">02</span><h3>Physical trials are hard to repeat</h3></li>
       <li><span class="num">03</span><h3>Simulations are built by hand</h3></li>
     </ol>
-    <p class="take">The gap between general intelligence and reliable deployment is where we sit.</p>
+    <p class="take">The gap between general intelligence and reliable deployment is <em>where we sit.</em></p>
   </div>
 </section>
 
 <!-- ───────────────────────── how it works ───────────────────────── -->
 <section class="band band--c" id="how" aria-labelledby="how-h">
   <div class="wrap">
-    <p class="kicker">How it works</p>
-    <h2 id="how-h">Video in. <em>Trainable environment out.</em></h2>
-    <div class="pipe-wrap">
-      <p class="pipe-loop" aria-hidden="true"><span>Harness · calibrate &amp; validate</span></p>
-      <p class="pipe-back" aria-hidden="true"><span>Evaluate, then recalibrate</span></p>
-      <ol class="pipe">
-        <li>
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l10.5-6.5Z"/></svg></span>
-          <h3>Video</h3>
-          <p>Egocentric capture</p>
-        </li>
-        <li>
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l7.6 4.4v8.8L12 20.8l-7.6-4.4V7.6ZM4.4 7.6L12 12l7.6-4.4M12 12v8.8"/></svg></span>
-          <h3>3D</h3>
-          <p>Scene geometry</p>
-        </li>
-        <li class="in-loop">
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5.5 13.4h5.6L10.2 21l8.3-10.6h-5.9Z"/></svg></span>
-          <h3>Physics</h3>
-          <p>Robot, objects, contact</p>
-        </li>
-        <li class="in-loop">
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8Z"/></svg></span>
-          <h3>Rewards</h3>
-          <p>Success checks, resets</p>
-        </li>
-        <li class="is-out">
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12.5h4l3-7.5 4 14 3-6.5h4"/></svg></span>
-          <h3>RL</h3>
-          <p>Post-train and evaluate</p>
-        </li>
-      </ol>
-    </div>
-    <p class="take">An environment a team can post-train and evaluate on, not just a visual copy of the scene.</p>
+    <h2 id="how-h">Video in. Trainable environment out.</h2>
+    <ol class="pipe" aria-describedby="harness-note">
+      <li><span class="num">01</span><h3>Video</h3><p>Egocentric capture</p></li>
+      <li><span class="num">02</span><h3>3D</h3><p>Scene geometry</p></li>
+      <li class="in-loop"><span class="num">03</span><h3>Physics</h3><p>Robot, objects, contact</p></li>
+      <li class="in-loop"><span class="num">04</span><h3>Rewards</h3><p>Success checks, resets</p></li>
+      <li class="is-out"><span class="num">05</span><h3>RL</h3><p>Post-train, evaluate, recalibrate</p></li>
+    </ol>
+    <p class="sr" id="harness-note">Steps three and four run inside the harness, which calibrates and validates the environment.</p>
+    <p class="take">An environment a team can <em>post-train and evaluate on</em>, not just a visual copy of the scene.</p>
     <div class="notes">
       <p class="note"><b>The harness is our core.</b> It calibrates the simulation against the real video so it behaves like the real scene, and validates that tasks, rewards and resets work before a customer trains on it.</p>
       <p class="note"><b>Built on existing simulators</b> such as MuJoCo and Isaac Lab. Our value is automating the engineering around them.</p>
@@ -166,8 +140,7 @@
 <!-- ───────────────────────── same task, two worlds ───────────────────────── -->
 <section class="band band--alt band--c" id="worlds" aria-labelledby="worlds-h">
   <div class="wrap">
-    <p class="kicker">From real to simulated</p>
-    <h2 id="worlds-h">Same task, <em>two worlds.</em></h2>
+    <h2 id="worlds-h">Same task, two worlds.</h2>
     <div class="tri" role="group" aria-label="One packing line, three times: on video, as geometry with physics, and in simulation with two robot arms">
       <figure class="panel">
 <!-- fig-a:start -->
@@ -188,16 +161,15 @@
         <figcaption><b>Simulated.</b> Same task, two robot arms</figcaption>
       </figure>
     </div>
-    <p class="tag-note"><span>Illustrative concept</span></p>
-    <p class="take">Grounded in real workspaces. Generated at scale.</p>
+    <p class="tag-note">Illustrative concept</p>
+    <p class="take">Grounded in real workspaces. <em>Generated at scale.</em></p>
   </div>
 </section>
 
 <!-- ───────────────────────── who it is for ───────────────────────── -->
 <section class="band band--c" id="who" aria-labelledby="who-h">
   <div class="wrap">
-    <p class="kicker">Who it is for</p>
-    <h2 id="who-h">We help robot intelligence <em>adapt to the real world.</em></h2>
+    <h2 id="who-h">We help robot intelligence adapt to the real world.</h2>
     <div class="duo">
       <div class="who who--first">
         <p class="tag">Start here</p>
@@ -212,7 +184,7 @@
         <p class="need">Need: diverse, physics-grounded environments at scale</p>
       </div>
     </div>
-    <p class="take">We are starting with design partnerships with robotics deployment startups.</p>
+    <p class="take">We are starting with <em>design partnerships</em> with robotics deployment startups.</p>
   </div>
 </section>
 
@@ -221,10 +193,10 @@
 <!-- ───────────────────────── contact ───────────────────────── -->
 <section class="close" id="contact" aria-labelledby="contact-h">
   <div class="wrap">
-    <p class="kicker">Request a pilot</p>
     <h2 id="contact-h">The infrastructure layer that turns real-world workflows into <em>trainable environments for physical AI.</em></h2>
     <div class="pilot">
       <div class="pilot-intro">
+        <h3>Request a pilot</h3>
         <p>Tell us about your robot, the task and the site, and we will scope a pilot with you.</p>
         <p class="pilot-alt">Prefer to write? <a href="mailto:contact@modelutility.com?subject=Hello%20Model%20Utility">contact@modelutility.com</a></p>
       </div>
